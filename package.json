@@ -1,0 +1,40 @@
+{
+  "name": "fairy-frills-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "start": "turbo start",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "backend:dev": "turbo dev --filter=backend",
+    "storefront:dev": "turbo dev --filter=storefront"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.14"
+  },
+  "packageManager": "pnpm@10.12.3",
+  "engines": {
+    "node": ">=18"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "19.1.1",
+      "react-dom": "19.1.1"
+    },
+    "onlyBuiltDependencies": [
+      "@medusajs/telemetry",
+      "@swc/core",
+      "esbuild",
+      "msgpackr-extract",
+      "protobufjs",
+      "sharp",
+      "unrs-resolver"
+    ]
+  },
+  "dependencies": {
+    "lightningcss-win32-x64-msvc": "^1.32.0"
+  }
+}

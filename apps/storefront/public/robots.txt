@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /*/cart
+Disallow: /*/checkout
+Disallow: /*/account
+Disallow: /*/account/*
+Disallow: /*/phone-verify
+Disallow: /*/order/
+Disallow: /store/
+Disallow: /admin/
+
+Sitemap: https://fairyfrills.in/sitemap.xml
