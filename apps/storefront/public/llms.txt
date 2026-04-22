@@ -1,0 +1,67 @@
+# Fairy Frills
+
+> Fairy Frills is an Indian designer clothing brand specialising in handcrafted baby girl dresses and mother-daughter matching outfits for life's most special moments.
+
+## About
+
+Fairy Frills creates premium, handcrafted children's and women's clothing with a focus on intricate detailing, soft fabrics, and occasion wear. Every piece is designed in India for Indian celebrations — birthdays, festivals, weddings, and everyday magic.
+
+- Brand: Fairy Frills
+- Country: India
+- Currency: INR (Indian Rupee)
+- Language: English, Hindi
+- Founded: India
+- Contact: Available via the contact page
+
+## Products
+
+Fairy Frills sells the following product categories:
+
+- **Birthday Outfits** — Princess dresses, tutu gowns, and party wear for baby girls
+- **Mother Daughter Combos** — Matching twinning sets for mothers and daughters for festivals, photoshoots, and special occasions
+- **Seasonal Collection** — Light summer dresses and season-specific styles for baby girls
+- **Theme Dresses** — Dresses built around specific themes for events and celebrations
+
+All products are handcrafted and available in sizes from newborn (0–3 months) up to 8 years for children, and standard adult sizes for mothers.
+
+## Key Pages
+
+- Homepage: https://fairyfrills.in/in
+- Shop All / Search: https://fairyfrills.in/in/search
+- Birthday Outfits: https://fairyfrills.in/in/categories/birthday-outfits
+- Mother Daughter Combos: https://fairyfrills.in/in/categories/mother-daughter-combos
+- Seasonal Collection: https://fairyfrills.in/in/categories/seasonal
+- Virtual Try-On: https://fairyfrills.in/in/virtual-try-on
+- Blog: https://fairyfrills.in/in/blogs
+- FAQs: https://fairyfrills.in/in/faqs
+- About Us: https://fairyfrills.in/in/about
+- Contact: https://fairyfrills.in/in/contact
+- Shipping Policy: https://fairyfrills.in/in/shipping-policy
+- Return Policy: https://fairyfrills.in/in/return-policy
+- Privacy Policy: https://fairyfrills.in/in/privacy-policy
+- Terms & Conditions: https://fairyfrills.in/in/terms
+
+## Features
+
+- Virtual Try-On powered by AI — customers can upload a photo and see how dresses look on their child
+- Customisation available — colour, embellishments, and sizing on request
+- Pan-India delivery (5–7 business days standard)
+- Razorpay payment integration (UPI, cards, net banking)
+- OTP-based login (email and phone) — no password required
+
+## Shipping & Returns
+
+- Standard delivery: 5–7 business days across India
+- Express shipping available at checkout
+- Returns accepted within 7 days of delivery for unused items in original packaging
+- Customised orders are non-returnable unless defective
+
+## Customer Support
+
+- Available in English and Hindi
+- Contact via the website contact form at https://fairyfrills.in/in/contact
+- Support for orders, customisations, sizing, and general queries
+
+## Sitemap
+
+https://fairyfrills.in/sitemap.xml
