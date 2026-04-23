@@ -14,6 +14,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   const priceInfo = getPriceInfoWithDiscount(product)
 
+  // Build keyword-rich alt text: "Product Title | Handcrafted Girls Dress | Fairy Frills"
+  const primaryCategory = product.categories?.[0]?.name || "Girls Dress"
+  const imageAlt = `${product.title} | Handcrafted ${primaryCategory} | Fairy Frills`
+
   return (
     <Link
       to="/$countryCode/products/$handle"
@@ -23,7 +27,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <div className="aspect-[3/4] w-full overflow-hidden bg-[var(--color-primary-50)] relative rounded-lg">
         <Thumbnail
           thumbnail={product.thumbnail || product.images?.[0]?.url}
-          alt={product.title}
+          alt={imageAlt}
           className="absolute inset-0 object-cover object-center w-full h-full group-hover:scale-105 transition-transform duration-500"
         />
       </div>
