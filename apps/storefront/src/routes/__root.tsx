@@ -39,7 +39,7 @@ export const Route = createRootRouteWithContext<{
       { rel: "alternate", hreflang: "x-default", href: "https://fairyfrills.in" },
     ],
     meta: [
-      { title: "Fairy Frills - Handcrafted Baby Girl Dresses & Mother Daughter Outfits" },
+      { title: "Fairy Frills — Handcrafted Birthday Dresses & Princess Outfits for Baby Girls India" },
       { charSet: "UTF-8" },
       {
         name: "viewport",
@@ -47,7 +47,7 @@ export const Route = createRootRouteWithContext<{
       },
       {
         name: "description",
-        content: "Fairy Frills is a designer clothing brand creating handcrafted baby girl dresses and elegant mother daughter twinning outfits for life's most special moments.",
+        content: "Shop handcrafted birthday dresses, princess outfits & mother-daughter twinning sets for baby girls. Made in India with love. Fairy Frills — celebrate every moment beautifully.",
       },
       { property: "og:site_name", content: "Fairy Frills" },
       { property: "og:type", content: "website" },
