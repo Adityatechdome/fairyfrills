@@ -46,16 +46,13 @@ export const Route = createFileRoute("/$countryCode/products/$handle")({
           is_giftcard: false,
           limit: 20,
         };
-
         if (primaryCategoryId) {
           params.category_id = [primaryCategoryId];
         }
-
         const { products } = await listProducts({
           query_params: params,
           region_id: region.id,
         });
-
         return products.filter((p) => p.id !== product.id);
       },
     });
@@ -71,18 +68,13 @@ export const Route = createFileRoute("/$countryCode/products/$handle")({
     const cc = countryCode || "in";
 
     if (!product) {
-      return {
-        meta: [{ title: "Product Not Found | Fairy Frills" }],
-      };
+      return { meta: [{ title: "Product Not Found | Fairy Frills" }] };
     }
 
     const primaryCategory = product.categories?.[0];
     const primaryCategoryName = primaryCategory?.name || "Girls Dress";
 
-    // Keyword-enriched title: Product Name — Category | Fairy Frills India
     const title = `${product.title} — ${primaryCategoryName} | Fairy Frills India`;
-
-    // Keyword-rich description with fallback
     const description =
       product.description ||
       `Buy ${product.title} — a handcrafted ${primaryCategoryName.toLowerCase()} for baby girls, made in India. Perfect for birthdays, celebrations & special occasions. Shop at Fairy Frills.`;
@@ -98,13 +90,9 @@ export const Route = createFileRoute("/$countryCode/products/$handle")({
       description:
         product.description ||
         `Handcrafted ${primaryCategoryName.toLowerCase()} for baby girls by Fairy Frills, made in India.`,
-      image:
-        product.images?.map((img: { url: string }) => img.url).filter(Boolean) || [],
+      image: product.images?.map((img: { url: string }) => img.url).filter(Boolean) || [],
       sku: product.variants?.[0]?.sku || product.id,
-      brand: {
-        "@type": "Brand",
-        name: "Fairy Frills",
-      },
+      brand: { "@type": "Brand", name: "Fairy Frills" },
       offers: {
         "@type": "Offer",
         availability: "https://schema.org/InStock",
@@ -112,10 +100,7 @@ export const Route = createFileRoute("/$countryCode/products/$handle")({
         price: product.variants?.[0]?.calculated_price?.calculated_amount
           ? product.variants[0].calculated_price.calculated_amount.toFixed(2)
           : undefined,
-        seller: {
-          "@type": "Organization",
-          name: "Fairy Frills",
-        },
+        seller: { "@type": "Organization", name: "Fairy Frills" },
       },
       ...(product.metadata?.rating_count && {
         aggregateRating: {
@@ -129,20 +114,11 @@ export const Route = createFileRoute("/$countryCode/products/$handle")({
     const breadcrumbItems = [
       { name: "Home", url: `https://fairyfrills.in/${cc}` },
       ...(primaryCategory
-        ? [
-            {
-              name: primaryCategory.name,
-              url: `https://fairyfrills.in/${cc}/categories/${primaryCategory.handle}`,
-            },
-          ]
+        ? [{ name: primaryCategory.name, url: `https://fairyfrills.in/${cc}/categories/${primaryCategory.handle}` }]
         : []),
-      {
-        name: product.title,
-        url: `https://fairyfrills.in/${cc}/products/${product.handle}`,
-      },
+      { name: product.title, url: `https://fairyfrills.in/${cc}/products/${product.handle}` },
     ];
     const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
-
     const firstImageUrl = product.images?.[0]?.url || product.thumbnail;
 
     return {
@@ -162,29 +138,13 @@ export const Route = createFileRoute("/$countryCode/products/$handle")({
       ],
       links: [
         ...(firstImageUrl
-          ? [
-              {
-                rel: "preload",
-                href: firstImageUrl,
-                as: "image",
-                fetchPriority: "high" as const,
-              },
-            ]
+          ? [{ rel: "preload", href: firstImageUrl, as: "image", fetchPriority: "high" as const }]
           : []),
-        {
-          rel: "canonical",
-          href: `https://fairyfrills.in/${cc}/products/${product.handle}`,
-        },
+        { rel: "canonical", href: `https://fairyfrills.in/${cc}/products/${product.handle}` },
       ],
       scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify(structuredData),
-        },
-        {
-          type: "application/ld+json",
-          children: JSON.stringify(breadcrumbSchema),
-        },
+        { type: "application/ld+json", children: JSON.stringify(structuredData) },
+        { type: "application/ld+json", children: JSON.stringify(breadcrumbSchema) },
       ],
     };
   },
