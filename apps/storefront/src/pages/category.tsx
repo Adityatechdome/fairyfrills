@@ -52,6 +52,25 @@ const getLowestPrice = (product: any): number => {
   return prices.length > 0 ? Math.min(...prices) : 0
 }
 
+const CATEGORY_INTRO: Record<string, string> = {
+  "birthday-outfits":
+    "Discover handcrafted birthday dresses for baby girls — from princess frocks and tutu sets to theme birthday outfits for unicorn, Barbie & fairytale parties. Every piece is made in India with premium fabrics, designed to make her birthday truly magical.",
+  "mother-daughter-combos":
+    "Create beautiful memories in perfectly coordinated mother-daughter twinning outfits. Our handcrafted matching sets are designed for birthdays, festivals, and special photoshoots — all made in India with love.",
+  "first-birthday":
+    "Celebrate her very first birthday in a handcrafted outfit made just for this moment. Our first birthday collection features tutu dresses, floral frocks, and princess gowns — crafted in India with the softest fabrics.",
+  "seasonal":
+    "Refresh her wardrobe with our seasonal collection of handcrafted dresses for baby girls. Light fabrics, beautiful prints, and comfortable styles — new arrivals every season, made in India.",
+  "festive-wear":
+    "Dress her up for every festival in a stunning handcrafted outfit. From lehengas and anarkalis to festive frocks — our festive wear collection brings tradition and elegance together for baby girls.",
+  "princess-dresses":
+    "Every girl deserves to feel like a princess. Browse our handcrafted princess dresses — floor-length gowns, layered tutus, and sparkly party frocks made in India for your little royalty.",
+  "unicorn-theme":
+    "Make her birthday magical with a handcrafted unicorn theme dress. Pastel tutus, rainbow frocks, and sparkly unicorn outfits — all made in India and ready to make the party unforgettable.",
+  "barbie-theme":
+    "She will be the star of the party in a handcrafted Barbie theme birthday outfit. Pretty in pink dresses, glamorous frocks, and Barbie-inspired party wear — made in India with premium fabrics.",
+}
+
 const Category = () => {
   const { category, region, countryCode } = useLoaderData({
     from: "/$countryCode/categories/$handle",
@@ -203,6 +222,17 @@ const Category = () => {
 
   return (
     <div className="content-container py-8 md:py-12">
+      {/* SEO: H1 heading and keyword-rich intro copy for category pages */}
+      <div className="mb-4">
+        <h1 className="text-2xl font-semibold text-[var(--color-text)] mb-2">
+          {category?.name}
+        </h1>
+        {CATEGORY_INTRO[category?.handle || ""] && (
+          <p className="text-sm text-[var(--color-text-muted)] max-w-2xl leading-relaxed">
+            {CATEGORY_INTRO[category?.handle || ""]}
+          </p>
+        )}
+      </div>
       <Breadcrumb
         items={[
           { label: "Home", href: "/$countryCode", params: { countryCode } },
