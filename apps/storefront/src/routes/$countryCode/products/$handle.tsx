@@ -37,7 +37,7 @@ export const Route = createFileRoute("/$countryCode/products/$handle")({
       },
     });
 
-    const primaryCategoryId = product.categories?.[0]?.id
+    const primaryCategoryId = product.categories?.[0]?.id;
     await queryClient.ensureQueryData({
       queryKey: queryKeys.products.related(product.id, region.id),
       queryFn: async () => {
@@ -67,31 +67,39 @@ export const Route = createFileRoute("/$countryCode/products/$handle")({
     };
   },
   head: ({ loaderData }) => {
-    const { product, region } = loaderData || {};
+    const { product, region, countryCode } = loaderData || {};
+    const cc = countryCode || "in";
 
     if (!product) {
       return {
-        meta: [
-          {
-            title: "Product Not Found | Fairy Frills",
-          },
-        ],
+        meta: [{ title: "Product Not Found | Fairy Frills" }],
       };
     }
 
-    const title = `${product.title} | Fairy Frills`;
+    const primaryCategory = product.categories?.[0];
+    const primaryCategoryName = primaryCategory?.name || "Girls Dress";
+
+    // Keyword-enriched title: Product Name — Category | Fairy Frills India
+    const title = `${product.title} — ${primaryCategoryName} | Fairy Frills India`;
+
+    // Keyword-rich description with fallback
     const description =
       product.description ||
-      `Shop ${product.title} at Fairy Frills. Handcrafted designer outfit for baby girls.`;
-    const ogImage = product.thumbnail || "https://cdn.mignite.app/ws/works_01KJG05M29Q8ZYYH6Z387MHSB9/generated-01KKJYBYV1EG0GZ7HZTENPPPWK-01KKJYBYV2JVY7WQ8V629ERKAQ.jpeg";
+      `Buy ${product.title} — a handcrafted ${primaryCategoryName.toLowerCase()} for baby girls, made in India. Perfect for birthdays, celebrations & special occasions. Shop at Fairy Frills.`;
 
-    const primaryCategory = product.categories?.[0]
+    const ogImage =
+      product.thumbnail ||
+      "https://cdn.mignite.app/ws/works_01KJG05M29Q8ZYYH6Z387MHSB9/generated-01KKJYBYV1EG0GZ7HZTENPPPWK-01KKJYBYV2JVY7WQ8V629ERKAQ.jpeg";
+
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "Product",
       name: product.title,
-      description: product.description,
-      image: product.images?.map((img: { url: string }) => img.url).filter(Boolean) || [],
+      description:
+        product.description ||
+        `Handcrafted ${primaryCategoryName.toLowerCase()} for baby girls by Fairy Frills, made in India.`,
+      image:
+        product.images?.map((img: { url: string }) => img.url).filter(Boolean) || [],
       sku: product.variants?.[0]?.sku || product.id,
       brand: {
         "@type": "Brand",
@@ -104,6 +112,10 @@ export const Route = createFileRoute("/$countryCode/products/$handle")({
         price: product.variants?.[0]?.calculated_price?.calculated_amount
           ? product.variants[0].calculated_price.calculated_amount.toFixed(2)
           : undefined,
+        seller: {
+          "@type": "Organization",
+          name: "Fairy Frills",
+        },
       },
       ...(product.metadata?.rating_count && {
         aggregateRating: {
@@ -115,13 +127,21 @@ export const Route = createFileRoute("/$countryCode/products/$handle")({
     };
 
     const breadcrumbItems = [
-      { name: "Home", url: "https://fairyfrills.in/in" },
+      { name: "Home", url: `https://fairyfrills.in/${cc}` },
       ...(primaryCategory
-        ? [{ name: primaryCategory.name, url: `https://fairyfrills.in/in/categories/${primaryCategory.handle}` }]
+        ? [
+            {
+              name: primaryCategory.name,
+              url: `https://fairyfrills.in/${cc}/categories/${primaryCategory.handle}`,
+            },
+          ]
         : []),
-      { name: product.title, url: `https://fairyfrills.in/in/products/${product.handle}` },
-    ]
-    const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems)
+      {
+        name: product.title,
+        url: `https://fairyfrills.in/${cc}/products/${product.handle}`,
+      },
+    ];
+    const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
 
     const firstImageUrl = product.images?.[0]?.url || product.thumbnail;
 
@@ -142,9 +162,19 @@ export const Route = createFileRoute("/$countryCode/products/$handle")({
       ],
       links: [
         ...(firstImageUrl
-          ? [{ rel: "preload", href: firstImageUrl, as: "image", fetchPriority: "high" as const }]
+          ? [
+              {
+                rel: "preload",
+                href: firstImageUrl,
+                as: "image",
+                fetchPriority: "high" as const,
+              },
+            ]
           : []),
-        { rel: "canonical", href: `https://fairyfrills.in/in/products/${product.handle}` },
+        {
+          rel: "canonical",
+          href: `https://fairyfrills.in/${cc}/products/${product.handle}`,
+        },
       ],
       scripts: [
         {
