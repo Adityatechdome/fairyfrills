@@ -11,10 +11,9 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const location = useLocation()
   const countryCode = getCountryCodeFromPath(location.pathname) || "in"
-
   const priceInfo = getPriceInfoWithDiscount(product)
 
-  // Build keyword-rich alt text: "Product Title | Handcrafted Girls Dress | Fairy Frills"
+  // Keyword-rich alt: "Product Title | Handcrafted [Category] | Fairy Frills"
   const primaryCategory = product.categories?.[0]?.name || "Girls Dress"
   const imageAlt = `${product.title} | Handcrafted ${primaryCategory} | Fairy Frills`
 
@@ -31,7 +30,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
           className="absolute inset-0 object-cover object-center w-full h-full group-hover:scale-105 transition-transform duration-500"
         />
       </div>
-
       <div className="mt-3 flex flex-col gap-1">
         <span className="text-[var(--color-text)] text-sm font-medium line-clamp-2">
           {product.title}
